@@ -1,25 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+
+import { Container, CardsContainer, CardsRow } from "./styles";
+import Card from "./components/card";
 
 function App() {
+  const [player, setPlayer] = React.useState<"x" | "o">("x");
+  const handleCardSelection = React.useCallback(
+    (id: number) => {
+      console.log({ id, player });
+      setPlayer(player === "x" ? "o" : "x");
+    },
+    [player]
+  );
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <h1>Current player: {player.toUpperCase()}</h1>
+      <CardsContainer>
+        <CardsRow>
+          <Card id={0} markPoint={handleCardSelection} currentUser={player} />
+          <Card id={0} markPoint={handleCardSelection} currentUser={player} />
+          <Card id={0} markPoint={handleCardSelection} currentUser={player} />
+        </CardsRow>
+        <CardsRow>
+          <Card id={0} markPoint={handleCardSelection} currentUser={player} />
+          <Card id={0} markPoint={handleCardSelection} currentUser={player} />
+          <Card id={0} markPoint={handleCardSelection} currentUser={player} />
+        </CardsRow>
+        <CardsRow>
+          <Card id={0} markPoint={handleCardSelection} currentUser={player} />
+          <Card id={0} markPoint={handleCardSelection} currentUser={player} />
+          <Card id={0} markPoint={handleCardSelection} currentUser={player} />
+        </CardsRow>
+      </CardsContainer>
+    </Container>
   );
 }
 
