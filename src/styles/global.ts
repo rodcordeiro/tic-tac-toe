@@ -11,4 +11,8 @@ export default createGlobalStyle`
   -moz-osx-font-smoothing: grayscale;
 }
 
+body{
+  overflow: hidden;
+
+}
 `;
